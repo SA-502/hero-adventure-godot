@@ -1,0 +1,62 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/end_screen.gd" id="1_es_gd"]
+[ext_resource type="Theme" path="res://assets/ui/arabic_theme.tres" id="2_ar_theme"]
+
+[node name="EndScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 360.0
+theme = ExtResource("2_ar_theme")
+script = ExtResource("1_es_gd")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0862745, 0.109804, 0.196078, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HeadingLabel" type="Label" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.831373, 0.231373, 1)
+theme_override_font_sizes/font_size = 20
+text = "انتهت اللعبة!"
+horizontal_alignment = 1
+
+[node name="FinalScoreLabel" type="Label" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+text = "النتيجة النهائية: 0"
+horizontal_alignment = 1
+
+[node name="BestScoreLabel" type="Label" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+text = "أعلى نتيجة: 0"
+horizontal_alignment = 1
+
+[node name="PlayAgainButton" type="Button" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+text = "إعادة اللعب"
+
+[node name="MainMenuButton" type="Button" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+text = "القائمة الرئيسية"

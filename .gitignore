@@ -1,0 +1,7 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+addons/.godot_ai_update/
+*.tmp
+*.log
+export_presets.cfg

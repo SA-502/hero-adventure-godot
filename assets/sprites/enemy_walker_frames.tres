@@ -1,0 +1,37 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://b7iroofdu1bft"]
+
+[ext_resource type="Texture2D" uid="uid://bd116jathlbp0" path="res://assets/sprites/enemy_walker.png" id="1_h2745"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5wfq"]
+atlas = ExtResource("1_h2745")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bgnh"]
+atlas = ExtResource("1_h2745")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxew3"]
+atlas = ExtResource("1_h2745")
+region = Rect2(32, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5wfq")
+}],
+"loop": 0,
+"name": &"squished",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6bgnh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxew3")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 6.0
+}]

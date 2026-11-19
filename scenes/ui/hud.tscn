@@ -1,0 +1,84 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/hud.gd" id="1_hud_gd"]
+[ext_resource type="Theme" path="res://assets/ui/arabic_theme.tres" id="2_ar_theme"]
+
+[node name="HUD" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_hud_gd")
+
+[node name="Root" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 360.0
+mouse_filter = 2
+theme = ExtResource("2_ar_theme")
+
+[node name="TopBar" type="PanelContainer" parent="Root"]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 38.0
+mouse_filter = 2
+
+[node name="Margin" type="MarginContainer" parent="Root/TopBar"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="HBox" type="HBoxContainer" parent="Root/TopBar/Margin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="PauseButton" type="Button" parent="Root/TopBar/Margin/HBox"]
+layout_mode = 2
+focus_mode = 0
+text = "إيقاف"
+
+[node name="TimeLabel" type="Label" parent="Root/TopBar/Margin/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "الوقت: 180"
+horizontal_alignment = 1
+
+[node name="StageLabel" type="Label" parent="Root/TopBar/Margin/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "المرحلة: 1-1"
+horizontal_alignment = 1
+
+[node name="LivesLabel" type="Label" parent="Root/TopBar/Margin/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "المحاولات: 3"
+horizontal_alignment = 1
+
+[node name="CoinsLabel" type="Label" parent="Root/TopBar/Margin/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "العملات: 0"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="Root/TopBar/Margin/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "النقاط: 0"
+horizontal_alignment = 1
+
+[node name="TipPanel" type="PanelContainer" parent="Root"]
+visible = false
+layout_mode = 0
+offset_left = 40.0
+offset_top = 46.0
+offset_right = 600.0
+offset_bottom = 86.0
+mouse_filter = 2
+
+[node name="TipLabel" type="Label" parent="Root/TipPanel"]
+layout_mode = 2
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1

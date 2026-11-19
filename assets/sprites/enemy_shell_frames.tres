@@ -1,0 +1,37 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://m4kpe6v7voug"]
+
+[ext_resource type="Texture2D" uid="uid://b10s8t5ixjnpn" path="res://assets/sprites/enemy_shell.png" id="1_g5abi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jb0q"]
+atlas = ExtResource("1_g5abi")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u826s"]
+atlas = ExtResource("1_g5abi")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uaos1"]
+atlas = ExtResource("1_g5abi")
+region = Rect2(32, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jb0q")
+}],
+"loop": 0,
+"name": &"shell",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u826s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uaos1")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 6.0
+}]

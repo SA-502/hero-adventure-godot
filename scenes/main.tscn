@@ -1,0 +1,163 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/title_screen.gd" id="1_ts_gd"]
+[ext_resource type="Theme" path="res://assets/ui/arabic_theme.tres" id="2_ar_theme"]
+[ext_resource type="Texture2D" path="res://assets/sprites/bg_cloud.png" id="3_cloud"]
+[ext_resource type="Texture2D" path="res://assets/sprites/bg_bush.png" id="4_bush"]
+[ext_resource type="Texture2D" path="res://assets/sprites/castle.png" id="5_castle"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player_small.png" id="6_player"]
+[ext_resource type="Texture2D" path="res://assets/sprites/coin.png" id="7_coin"]
+[ext_resource type="Texture2D" path="res://assets/sprites/world_tiles.png" id="8_tiles"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grass"]
+atlas = ExtResource("8_tiles")
+region = Rect2(0, 0, 32, 32)
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 360.0
+theme = ExtResource("2_ar_theme")
+script = ExtResource("1_ts_gd")
+
+[node name="Sky" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.360784, 0.580392, 0.988235, 1)
+
+[node name="Cloud1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 28.0
+offset_right = 144.0
+offset_bottom = 76.0
+texture = ExtResource("3_cloud")
+stretch_mode = 4
+
+[node name="Cloud2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 36.0
+offset_right = 576.0
+offset_bottom = 84.0
+texture = ExtResource("3_cloud")
+stretch_mode = 4
+
+[node name="Bush1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 280.0
+offset_right = 120.0
+offset_bottom = 328.0
+texture = ExtResource("4_bush")
+stretch_mode = 4
+
+[node name="Bush2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 286.0
+offset_right = 236.0
+offset_bottom = 334.0
+texture = ExtResource("4_bush")
+stretch_mode = 4
+
+[node name="Castle" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 200.0
+offset_right = 628.0
+offset_bottom = 328.0
+texture = ExtResource("5_castle")
+stretch_mode = 4
+
+[node name="HeroPreview" type="Sprite2D" parent="."]
+position = Vector2(96, 312)
+texture = ExtResource("6_player")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="CoinPreview" type="Sprite2D" parent="."]
+position = Vector2(148, 286)
+texture = ExtResource("7_coin")
+region_enabled = true
+region_rect = Rect2(0, 0, 24, 24)
+
+[node name="GroundStrip" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = 328.0
+offset_right = 640.0
+offset_bottom = 360.0
+texture = SubResource("AtlasTexture_grass")
+stretch_mode = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.831373, 0.231373, 1)
+theme_override_font_sizes/font_size = 22
+text = "مغامرة البطل"
+horizontal_alignment = 1
+
+[node name="BestScoreLabel" type="Label" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+text = "أعلى نتيجة: 0"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+text = "ابدأ المغامرة"
+
+[node name="SelectLabel" type="Label" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+text = "اختر المرحلة:"
+horizontal_alignment = 1
+
+[node name="LevelRow" type="HBoxContainer" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Level3Button" type="Button" parent="CenterContainer/Panel/VBox/LevelRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1-3"
+
+[node name="Level2Button" type="Button" parent="CenterContainer/Panel/VBox/LevelRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1-2"
+
+[node name="Level1Button" type="Button" parent="CenterContainer/Panel/VBox/LevelRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1-1"
+
+[node name="MuteButton" type="Button" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+text = "كتم الصوت"
+
+[node name="HintLabel" type="Label" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "الحركة: الأسهم أو WASD  |  القفز: Space  |  الركض: Shift"
+horizontal_alignment = 1

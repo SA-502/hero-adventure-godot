@@ -1,0 +1,20 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/objects/coin.gd" id="1_coin_gd"]
+[ext_resource type="SpriteFrames" path="res://assets/sprites/coin_frames.tres" id="2_coin_frames"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_coin"]
+size = Vector2(20, 20)
+
+[node name="Coin" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_coin_gd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_coin_frames")
+animation = &"spin"
+autoplay = "spin"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_coin")

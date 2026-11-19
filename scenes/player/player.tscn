@@ -1,0 +1,48 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_player_gd"]
+[ext_resource type="SpriteFrames" path="res://assets/sprites/player_small_frames.tres" id="2_small_frames"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(20, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
+size = Vector2(22, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_head"]
+size = Vector2(14, 4)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 2
+collision_mask = 1
+floor_snap_length = 4.0
+script = ExtResource("1_player_gd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = ExtResource("2_small_frames")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_body")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 28
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_hitbox")
+
+[node name="HeadChecker" type="Area2D" parent="."]
+position = Vector2(0, -29)
+collision_layer = 0
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeadChecker"]
+shape = SubResource("RectangleShape2D_head")
