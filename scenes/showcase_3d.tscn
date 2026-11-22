@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://b7gnbc4rocf32"]
+
+[ext_resource type="Script" uid="uid://nsike45hmi2n" path="res://scripts/showcase_3d.gd" id="1_prf4o"]
+[ext_resource type="PackedScene" uid="uid://yhu3sh72khk8" path="res://assets/models/sm_prop_crate_wood_01.glb" id="2_runkr"]
+[ext_resource type="PackedScene" uid="uid://ba1rmy3lip8yh" path="res://assets/models/sm_prop_coin_gold_01.glb" id="3_sw5d3"]
+[ext_resource type="PackedScene" uid="uid://ccmwyq7vsm7g4" path="res://assets/models/sm_env_rock_01.glb" id="4_i02ho"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xemry"]
+sky_top_color = Color(0.38, 0.45, 0.55, 1)
+sky_horizon_color = Color(0.65, 0.67, 0.7, 1)
+ground_bottom_color = Color(0.2, 0.17, 0.13, 1)
+ground_horizon_color = Color(0.65, 0.67, 0.7, 1)
+
+[sub_resource type="Sky" id="Sky_o6e8m"]
+sky_material = SubResource("ProceduralSkyMaterial_xemry")
+
+[sub_resource type="Environment" id="Environment_r6a6m"]
+background_mode = 2
+sky = SubResource("Sky_o6e8m")
+ambient_light_source = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_komuf"]
+albedo_color = Color(0.18431373, 0.22745098, 0.16078432, 1)
+roughness = 0.95
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_b341x"]
+size = Vector2(24, 24)
+
+[node name="Showcase3D" type="Node3D" unique_id=200451363]
+script = ExtResource("1_prf4o")
+
+[node name="Props" type="Node3D" parent="." unique_id=1465660328]
+
+[node name="Crate" parent="Props" unique_id=708155578 instance=ExtResource("2_runkr")]
+transform = Transform3D(0.9130889, 0, 0.40776044, 0, 1, 0, -0.40776044, 0, 0.9130889, -1.6, 0, 0)
+
+[node name="Coin" parent="Props" unique_id=2125333730 instance=ExtResource("3_sw5d3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.6, 0.35)
+
+[node name="Rock" parent="Props" unique_id=1160707128 instance=ExtResource("4_i02ho")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 1.95, 0, -0.15)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1017710106]
+transform = Transform3D(1, 0, 0, 0, 0.97589743, 0.21822962, 0, -0.21822962, 0.97589743, 0.15, 1.45, 4.3)
+current = true
+fov = 50.0
+
+[node name="SunLight" type="DirectionalLight3D" parent="." unique_id=1890247970]
+transform = Transform3D(0.8525245, -0.409435, 0.32490763, 0, 0.62161, 0.7833269, -0.52268726, -0.66780543, 0.52993774, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1784629449]
+environment = SubResource("Environment_r6a6m")
+
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=1716410072]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0, 0)
+material_override = SubResource("StandardMaterial3D_komuf")
+mesh = SubResource("PlaneMesh_b341x")

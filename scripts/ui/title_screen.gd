@@ -36,6 +36,10 @@ func _ready() -> void:
 	if mute_btn != null and not mute_btn.pressed.is_connected(_on_mute_pressed):
 		mute_btn.pressed.connect(_on_mute_pressed)
 
+	var bonus_btn := get_node_or_null("CenterContainer/Panel/VBox/BonusButton") as Button
+	if bonus_btn != null and not bonus_btn.pressed.is_connected(_on_bonus_pressed):
+		bonus_btn.pressed.connect(_on_bonus_pressed)
+
 
 func _on_start_pressed() -> void:
 	_start_at_level(1)
@@ -64,6 +68,11 @@ func _on_mute_pressed() -> void:
 	if am != null and am.has_method("toggle_mute"):
 		am.call("toggle_mute")
 	_refresh_mute_label()
+
+
+func _on_bonus_pressed() -> void:
+	if is_inside_tree():
+		get_tree().change_scene_to_file("res://scenes/bonus_3d.tscn")
 
 
 func _refresh_best_score() -> void:

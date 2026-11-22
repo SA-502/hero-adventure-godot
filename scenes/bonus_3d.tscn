@@ -1,0 +1,149 @@
+[gd_scene load_steps=18 format=4]
+
+[ext_resource type="Script" path="res://scripts/bonus_3d.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://assets/models/sm_prop_crate_wood_01.glb" id="2_crate"]
+[ext_resource type="PackedScene" path="res://assets/models/sm_prop_coin_gold_01.glb" id="3_coin"]
+[ext_resource type="PackedScene" path="res://assets/models/sm_env_rock_01.glb" id="4_rock"]
+[ext_resource type="Theme" path="res://assets/ui/arabic_theme.tres" id="5_theme"]
+
+[sub_resource type="ProceduralSkyMaterial" id="SkyMat"]
+sky_top_color = Color(0.29, 0.44, 0.78, 1)
+sky_horizon_color = Color(0.79, 0.85, 0.93, 1)
+
+[sub_resource type="Sky" id="Sky"]
+sky_material = SubResource("SkyMat")
+
+[sub_resource type="Environment" id="Env"]
+background_mode = 2
+sky = SubResource("Sky")
+tonemap_mode = 2
+
+[sub_resource type="PlaneMesh" id="GroundMesh"]
+size = Vector2(30, 30)
+
+[sub_resource type="StandardMaterial3D" id="GroundMat"]
+albedo_color = Color(0.22, 0.31, 0.19, 1)
+roughness = 0.95
+
+[sub_resource type="BoxShape3D" id="GroundShape"]
+size = Vector3(30, 1, 30)
+
+[sub_resource type="StandardMaterial3D" id="HeroMat"]
+albedo_color = Color(0.22, 0.45, 0.9, 1)
+roughness = 0.55
+
+[sub_resource type="CapsuleMesh" id="HeroMesh"]
+radius = 0.35
+height = 1.4
+material = SubResource("HeroMat")
+
+[sub_resource type="CapsuleShape3D" id="HeroShape"]
+radius = 0.35
+height = 1.4
+
+[sub_resource type="BoxShape3D" id="CrateShape"]
+size = Vector3(1, 1, 1)
+
+[sub_resource type="BoxShape3D" id="RockShape"]
+size = Vector3(0.9, 0.5, 0.9)
+
+[sub_resource type="SphereShape3D" id="CoinShape"]
+radius = 0.65
+
+[node name="Bonus3D" type="Node3D"]
+script = ExtResource("1_script")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+rotation = Vector3(-0.9, 0.55, 0)
+shadow_enabled = true
+
+[node name="Ground" type="StaticBody3D" parent="."]
+position = Vector3(0, -0.5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("GroundMesh")
+surface_material_override/0 = SubResource("GroundMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("GroundShape")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+position = Vector3(0, 1, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("HeroMesh")
+
+[node name="Shape" type="CollisionShape3D" parent="Player"]
+shape = SubResource("HeroShape")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+position = Vector3(0, 3.4, 6.4)
+current = true
+fov = 60.0
+
+[node name="Crate1" parent="." instance=ExtResource("2_crate")]
+position = Vector3(-2.2, 0, -3)
+
+[node name="Crate1Body" type="StaticBody3D" parent="."]
+position = Vector3(-2.2, 0.5, -3)
+
+[node name="Shape" type="CollisionShape3D" parent="Crate1Body"]
+shape = SubResource("CrateShape")
+
+[node name="Crate2" parent="." instance=ExtResource("2_crate")]
+position = Vector3(2.6, 0, -4.6)
+
+[node name="Crate2Body" type="StaticBody3D" parent="."]
+position = Vector3(2.6, 0.5, -4.6)
+
+[node name="Shape" type="CollisionShape3D" parent="Crate2Body"]
+shape = SubResource("CrateShape")
+
+[node name="Crate3" parent="." instance=ExtResource("2_crate")]
+position = Vector3(4.2, 0, 1.4)
+
+[node name="Crate3Body" type="StaticBody3D" parent="."]
+position = Vector3(4.2, 0.5, 1.4)
+
+[node name="Shape" type="CollisionShape3D" parent="Crate3Body"]
+shape = SubResource("CrateShape")
+
+[node name="Rock1" parent="." instance=ExtResource("4_rock")]
+position = Vector3(-4.4, 0, 1.8)
+
+[node name="Rock2" parent="." instance=ExtResource("4_rock")]
+position = Vector3(5.2, 0, -2.2)
+
+[node name="Coin" type="Area3D" parent="."]
+position = Vector3(3, 1.2, -6.4)
+
+[node name="Shape" type="CollisionShape3D" parent="Coin"]
+shape = SubResource("CoinShape")
+
+[node name="CoinMesh" parent="Coin" instance=ExtResource("3_coin")]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Hint" type="Label" parent="UI"]
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 630.0
+offset_bottom = 30.0
+theme = ExtResource("5_theme")
+theme_override_font_sizes/font_size = 12
+text = "الحركة: WASD  ·  القفز: Space  ·  لفّ الكاميرا: Q / E  ·  العودة: Esc"
+horizontal_alignment = 1
+
+[node name="Status" type="Label" parent="UI"]
+offset_left = 12.0
+offset_top = 32.0
+offset_right = 630.0
+offset_bottom = 56.0
+theme = ExtResource("5_theme")
+theme_override_colors/font_color = Color(1, 0.831373, 0.231373, 1)
+theme_override_font_sizes/font_size = 16
+text = "اجمع العملة الذهبية"
+horizontal_alignment = 1
